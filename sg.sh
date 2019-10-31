@@ -1,9 +1,9 @@
 #! /bin/bash
 
 if [[ -f "/tmp/sgflag" ]]; then
-	after_reboot()
+	after_reboot
 else
-	before_reboot()
+	before_reboot
 fi
 before_reboot() {
 if [ "$EUID" -ne 0 ]; then	
