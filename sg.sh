@@ -1,4 +1,4 @@
-#! /bin/bash
+#! usr/bin/env bash
 before_reboot() {
 if [ "$EUID" -ne 0 ]; then	
 	echo "Please run this script as root"
