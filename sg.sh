@@ -1,10 +1,4 @@
 #! /bin/bash
-
-if [[ -f "/tmp/sgflag" ]]; then
-	after_reboot
-else
-	before_reboot
-fi
 before_reboot() {
 if [ "$EUID" -ne 0 ]; then	
 	echo "Please run this script as root"
@@ -52,7 +46,10 @@ sed -i "s|api.tls.ai|api-$host.tls.ai|g" /home/user/docker-compose/1.20.0/docker
 #echo $footprint
 #sed -i '0,/FaceSearch/{s/FaceSearch/Safeguard/}' /home/user/dashboard/definitions.json
 #cp /home/user/Downloads/sg-script/SGLogo.jpg /home/user/dashboard/images/SGLogo.jpg
-
-
-
 }
+
+if [[ -f "/tmp/sgflag" ]]; then
+	after_reboot
+else
+	before_reboot
+fi
