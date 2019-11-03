@@ -29,7 +29,7 @@ echo -e "\e[1m Please Rebbot your machine, then isntall the enviroment and FaceR
  
 }
 after_reboot(){
-echo '\n## Modbus plugin integration' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
+echo -e "\n## Modbus plugin integration" >> /home/user/docker-compose/1.20.0/env/broadcaster.env
 echo 'BCAST_MODBUS_IS_ENABLED=true' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
 echo 'CAST_MODBUS_CMD_PATH=/home/user/moxa-config/moxa_e1214.sh' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
 echo 'BCAST_MODBUS_CAMERA_LIST_PATH=/home/user/moxa-config/cameraList.json' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
