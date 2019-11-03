@@ -14,11 +14,33 @@ wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environmen
 
 chmod 777 better*
 chmod 777 Face*
-apt install vlc curl vim htop net-tools git -y
+apt install vlc curl vim htop net-tools git apt-transport-https ca-certificates software-properties-common -y
 git clone https://github.com/scriptsandsuch/sg-script.git
 apt install ./team* -y
+##install enviroment
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable" 
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+apt update
+sudo apt-get install docker-ce=5:18.09.7~3-0~ubuntu-bionic -y
+sudo curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 add-apt-repository --yes --update ppa:graphics-drivers/ppa
-apt install nvidia-driver-410 -y
+apt install nvidia-driver-410 nvidia-modprobe -y
+sudo apt-get install -y nvidia-docker2
+sudo tee /etc/docker/daemon.json <<'EOF'
+{
+    "default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+EOF
+sudo pkill -SIGHUP dockerd
 mkdir /home/user/moxa-config/
 mv /home/user/Downloads/sg-script/moxa_e1214.sh /home/user/moxa-config/
 mv /home/user/Downloads/sg-script/cameraList.json /home/user/moxa-config/
