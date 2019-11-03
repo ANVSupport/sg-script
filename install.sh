@@ -10,13 +10,14 @@ else
 	echo "You have set the wrong username for the ubuntu installation, please reinstall with a user named user"
 	exit
 fi
+##Download files and install what is needed
 wget https://s3.eu-central-1.amazonaws.com/facesearch.co/installbuilder/1.20.0/FaceRec-1.20.0-66-local-gpu-linux-x64-installer.run 
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-
 chmod +x Face*
 apt install vlc curl vim htop net-tools git apt-transport-https ca-certificates software-properties-common -y
 git clone https://github.com/scriptsandsuch/sg-script.git
 apt install ./team* -y
+
 ##install enviroment
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
@@ -41,6 +42,8 @@ sudo tee /etc/docker/daemon.json <<'EOF'
 }
 EOF
 sudo pkill -SIGHUP dockerd
+
+##moxa set up
 mkdir /home/user/moxa-config/
 mv /home/user/Downloads/sg-script/moxa_e1214.sh /home/user/moxa-config/
 mv /home/user/Downloads/sg-script/cameraList.json /home/user/moxa-config/
@@ -50,12 +53,15 @@ echo "1" > /opt/sg.f
 echo -e "Please reboot your machine, then isntall FaceRec, uncheck "start services" on the end of the installation after that run this script again"
  
 }
+
+
+##second iteration
 after_reboot(){
+##edit env and yml
 echo -e "\n## Modbus plugin integration" >> /home/user/docker-compose/1.20.0/env/broadcaster.env
 echo 'BCAST_MODBUS_IS_ENABLED=true' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
 echo 'BCAST_MODBUS_CMD_PATH=/home/user/moxa-config/moxa_e1214.sh' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
 echo 'BCAST_MODBUS_CAMERA_LIST_PATH=/home/user/moxa-config/cameraList.json' >> /home/user/docker-compose/1.20.0/env/broadcaster.env
-
 line=$(grep -nF broadcaster.tls.ai /home/user/docker-compose/1.20.0/docker-compose.yml  | awk -F: '{print $1}')
 pos=$((line+2))
 host=$(hostname)
@@ -63,6 +69,7 @@ sed -i "${pos}i \      - \/home\/user\/moxa-config:\/home\/user\/moxa-config" /h
 sed -i "s|nginx-\${node_name:-localnode}.tls.ai|nginx-$host.tls.ai|g" /home/user/docker-compose/1.20.0/docker-compose.yml
 sed -i "s|api.tls.ai|api-$host.tls.ai|g" /home/user/docker-compose/1.20.0/docker-compose.yml
 
+##finalize setup
 cd /home/user/docker-compose/1.20.0/
 docker-compose up -d
 footprint=$(docker exec -it $(docker ps | grep backend | awk '{print $1}') license-ver -o)
