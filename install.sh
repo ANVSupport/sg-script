@@ -63,11 +63,11 @@ sed -i "${pos}i \      - \/home\/user\/moxa-config:\/home\/user\/moxa-config" /h
 sed -i "s|nginx-\${node_name:-localnode}.tls.ai|nginx-$host.tls.ai|g" /home/user/docker-compose/1.20.0/docker-compose.yml
 sed -i "s|api.tls.ai|api-$host.tls.ai|g" /home/user/docker-compose/1.20.0/docker-compose.yml
 
+cd /home/user/docker-compose/1.20.0/
+docker-compose up -d
 footprint=$(docker exec -it $(docker ps | grep backend | awk '{print $1}') license-ver -o)
 echo "your footprint is:"
 echo $footprint
-cd /home/user/docker-compose/1.20.0/
-docker-compose up -d
 echo "2" > /opt/sg.f
 
 echo "DONE!"
