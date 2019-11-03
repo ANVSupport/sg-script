@@ -23,7 +23,7 @@ mkdir /home/user/moxa-config/
 mv /home/user/Downloads/sg-script/moxa_e1214.sh /home/user/moxa-config/
 mv /home/user/Downloads/sg-script/cameraList.json /home/user/moxa-config/
 chmod +x /home/user/moxa-config/*
-touch /tmp/sg.f
+echo "1" > /tmp/sg.f
 
 echo -e "\e[1m Please Rebbot your machine, then isntall the enviroment and FaceRec, after that run this script again"
  
@@ -46,6 +46,8 @@ sed -i "s|api.tls.ai|api-$host.tls.ai|g" /home/user/docker-compose/1.20.0/docker
 #echo $footprint
 #sed -i '0,/FaceSearch/{s/FaceSearch/Safeguard/}' /home/user/dashboard/definitions.json
 #cp /home/user/Downloads/sg-script/SGLogo.jpg /home/user/dashboard/images/SGLogo.jpg
+
+echo "2" > /tmp/sg.f
 }
 
 if [[ -f "/tmp/sg.f" ]]; then
