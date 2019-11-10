@@ -58,7 +58,7 @@ echo -e "Please reboot your machine, then isntall FaceRec, uncheck "start servic
 ##second iteration
 after_reboot(){
 ##edit env and yml
-tee /home/user/docker-compose/1.20.0/env/broadcaster.env <<'EOF'
+tee -a /home/user/docker-compose/1.20.0/env/broadcaster.env <<'EOF'
 ## Modbus plugin integration
 BCAST_MODBUS_IS_ENABLED=true
 BCAST_MODBUS_CMD_PATH=/home/user/moxa-config/moxa_e1214.sh
