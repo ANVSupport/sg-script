@@ -11,9 +11,8 @@ fi
 echo "Do you wish to install the enviroment automatically? [y/n]"
 read yn
 case $yn in
-	[Yy]*) install_env; break;;
+	[Yy]*) install_env;
         [Nn]*) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
-		break;;
 	*) echo "${red}Invalid Answer"; echo "Exiting...${reset}"; exit;;
     esac
 dpkg -a --configure
