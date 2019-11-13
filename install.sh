@@ -63,7 +63,7 @@ tee /etc/docker/daemon.json <<'EOF' > /dev/null
     }
 }
 EOF
-echo "{green}Runtime added{reset}"
+echo "${green}Runtime added${reset}"
 pkill -SIGHUP dockerd
 }
 
@@ -92,7 +92,7 @@ echo "Please reboot your machine"
 
 SuccesfulPrint(){
 	echo "=================================================================="
-	echo "                    $1 ....{green}success{reset}                  "
+	echo "                    $1 ....${green}success${reset}                  "
 	echo "=================================================================="
 }
 
