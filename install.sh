@@ -19,6 +19,8 @@ dpkg -a --configure
 wget https://s3.eu-central-1.amazonaws.com/facesearch.co/installbuilder/1.20.0/FaceRec-1.20.0-66-local-gpu-linux-x64-installer.run 
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 chmod +x Face*
+add-apt-repository --yes --update ppa:graphics-drivers/ppa
+apt install nvidia-driver-410 nvidia-modprobe -y && SuccesfulPrint "Nvidia drivers"
 apt install vlc curl vim htop net-tools git -y && SuccesfulPrint "Utilities"
 git clone https://github.com/scriptsandsuch/sg-script.git
 apt install ./team* -y && SuccesfulPrint "TeamViewer"
