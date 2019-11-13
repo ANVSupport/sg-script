@@ -17,11 +17,12 @@ while true; do
 				exit;;
         * ) echo "${red}Invalid Answer${reset}";;
     esac
-dpkg -a --configure
+done
+cdpkg -a --configure
 wget https://s3.eu-central-1.amazonaws.com/facesearch.co/installbuilder/1.20.0/FaceRec-1.20.0-66-local-gpu-linux-x64-installer.run 
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 chmod +x Face*
-apt install vlc curl vim htop net-tools git apt-transport-https ca-certificates software-properties-common -y && SuccesfulPrint "Utilities"
+apt install vlc curl vim htop net-tools git -y && SuccesfulPrint "Utilities"
 git clone https://github.com/scriptsandsuch/sg-script.git
 apt install ./team* -y && SuccesfulPrint "TeamViewer"
 
@@ -39,19 +40,20 @@ echo -e "Please reboot your machine, then isntall FaceRec, uncheck \"start servi
 }
 
 Install_env(){
+apt install apt-transport-https ca-certificates software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable" 
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-echo $distribution ##debug
+echo "distro is: " $distribution ##debug
 curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | tee /etc/apt/sources.list.d/nvidia-docker.list
 apt update
 apt install docker-ce=5:18.09.7~3-0~ubuntu-bionic -y && SuccesfulPrint "docker-ce"
-curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && SuccesfulPrint "docker-compose"
 add-apt-repository --yes --update ppa:graphics-drivers/ppa
 apt install nvidia-driver-410 nvidia-modprobe -y && SuccesfulPrint "Nvidia drivers"
 apt install -y nvidia-docker2 && SuccesfulPrint "Nvidia Docker"
-tee /etc/docker/daemon.json <<'EOF' > /dev/null
+tee /etc/docker/daemon.json <<'EOF' > /dev/null	
 {
     "default-runtime": "nvidia",
     "runtimes": {
