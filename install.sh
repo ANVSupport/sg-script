@@ -1,4 +1,4 @@
-#! usr/bin/env bash
+#! /bin/bash
 before_reboot() {
 if [[ -d "/home/user/" ]]; then
 	cd /home/user/Downloads
