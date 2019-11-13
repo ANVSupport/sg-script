@@ -8,13 +8,14 @@ else
 	exit
 fi
 ##Download files and install what is needed
-echo "Do you wish to install the enviroment automatically? [y/n]"
-read yn
-case $yn in
-	[Yy]) install_env;
-        [Nn]) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
-	*) echo "${red}Invalid Answer"; echo "Exiting...${reset}"; exit;;
-    esac
+#echo "Do you wish to install the enviroment automatically? [y/n]"
+#read yn
+#case $yn in
+#	[Yy]) install_env;
+#        [Nn]) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
+#	*) echo "${red}Invalid Answer"; echo "Exiting...${reset}"; exit;;
+#	esac
+wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run
 dpkg -a --configure
 wget https://s3.eu-central-1.amazonaws.com/facesearch.co/installbuilder/1.20.0/FaceRec-1.20.0-66-local-gpu-linux-x64-installer.run 
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
