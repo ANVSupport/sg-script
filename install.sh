@@ -7,7 +7,9 @@ else
 	exit
 fi
 ##Download files and install what is needed
+echo "test"
 read -p "Do you wish to install the enviroment automatically? [y/n]" yn
+echo "test"
 case $yn in
 	[Y|y]* ) install_env; break;;
         [N|n]* ) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
