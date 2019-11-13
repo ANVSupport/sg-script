@@ -13,7 +13,6 @@ while true; do
         [Y|y]* ) install_env; break;;
         [N|n]* ) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
 		break;;
-        * ) echo "${red}Invalid Answer${reset}";;
     esac
 done
 cdpkg -a --configure
