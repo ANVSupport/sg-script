@@ -1,4 +1,5 @@
 #! /bin/bash
+#s6NXKghuKb
 before_reboot() {
 if [[ -d "/home/user/" ]]; then
 	cd /home/user/Downloads
@@ -10,10 +11,10 @@ fi
 echo "Do you wish to install the enviroment automatically? [y/n]"
 read yn
 case $yn in
-	[Yy]* ) install_env; break;;
-        [Nn]* ) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
+	[Yy]*) install_env; break;;
+        [Nn]*) wget https://s3.eu-central-1.amazonaws.com/airgap.anyvision.co/better_environment/betterenvironment-181202-142-linux-x64-installer.run; 
 		break;;
-	* ) echo "${red}Invalid Answer${reset}"; exit;;
+	*) echo "${red}Invalid Answer"; echo "Exiting...${reset}"; exit;;
     esac
 cdpkg -a --configure
 wget https://s3.eu-central-1.amazonaws.com/facesearch.co/installbuilder/1.20.0/FaceRec-1.20.0-66-local-gpu-linux-x64-installer.run 
