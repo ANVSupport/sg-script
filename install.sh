@@ -16,7 +16,7 @@ case $yn in
 		break;;
 	*) echo "${red}Invalid Answer"; echo "Exiting...${reset}"; exit;;
     esac
-cdpkg -a --configure
+dpkg -a --configure
 wget https://s3.eu-central-1.amazonaws.com/facesearch.co/installbuilder/1.20.0/FaceRec-1.20.0-66-local-gpu-linux-x64-installer.run 
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 chmod +x Face*
