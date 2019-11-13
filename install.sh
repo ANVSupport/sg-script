@@ -27,8 +27,8 @@ apt install ./team* -y && SuccesfulPrint "TeamViewer"
 
 
 ##moxa set up
-moxadir = "/home/user/moxa-config/"
-mkdir $moxadir
+moxadir="/home/user/moxa-config/"
+mkdir ${moxadir}
 mv /home/user/Downloads/sg-script/moxa_e1214.sh $moxadir
 mv /home/user/Downloads/sg-script/cameraList.json $moxadir
 chmod +x /home/user/moxa-config/*
