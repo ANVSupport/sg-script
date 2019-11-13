@@ -7,7 +7,6 @@ else
 	exit
 fi
 ##Download files and install what is needed
-mount_storage ##when func is ready
 while true; do
     read -p "Do you wish to install the enviroment automatically? [y/n]" yn
     case $yn in
@@ -90,9 +89,7 @@ echo "2" > /opt/sg.f ##flag if the script has been run
 echo "DONE!"
 echo "Please reboot your machine"
 }
-mount_storage(){
-	##TODO
-}
+
 SuccesfulPrint(){
 	echo "=================================================================="
 	echo "                    $1 ....{green}success{reset}                  "
