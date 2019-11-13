@@ -118,6 +118,7 @@ if [[ -f "/opt/sg.f" ]]; then
 		echo "App not installed, please Install it and try again"
 		echo "Exiting..."
 		exit
+	fi
 else
 	before_reboot
 fi
